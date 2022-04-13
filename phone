@@ -1,0 +1,72 @@
+function isContactExists(name){
+	let isExist = false
+  for(let i = 0; i < this.contacts.length; i++){
+  		if(this.contacts[i].name === name){
+      		isExist = true
+      }
+  }
+  return isExist
+}
+
+function contactIndex(name){
+		for(let i = 0; i < this.contacts.length; i++){
+  		if(this.contacts[i].name === name){
+      		return i
+      } 
+    return
+}
+}
+
+
+function call(detail)  {
+		if(typeof(detail) === 'number'){
+    		this.isCalling = true
+        this.callNumber = detail
+			  this.callHistory.push(detail)
+        
+    }   else if(typeof(detail) === 'string' && this.isContactExists(detail))	{
+            	this.isCalling = true
+              this.callNumber = detail 
+				      this.callHistory.push(detail)
+    } else {
+				console.log("Error: contact doesn't exist")
+    }	
+  }
+
+function drop(){
+		this.isCalling = false
+}
+
+function addContact(name,number) {
+    if(this.isContactExists(name)){
+  	this.contacts[this.contactIndex(name)].number = [this.contacts[this.contactIndex(name)].number , number]
+  } else {
+        this.contacts.push({
+    		name,
+            number
+        })
+  }
+}
+
+function removeContact(name){
+       	this.contacts.splice(this.contactIndex(name),1)
+}
+  
+
+
+function Samsung (model, memory){
+	
+	this.model = model
+  this.memory = memory
+  this.isCalling = null
+  this.callNumber = null
+  this.callHistory = []
+  this.call = call
+  this.drop = drop
+	this.contacts = []
+  this.addContact = addContact
+  this.removeContact = removeContact
+  this.isContactExists = isContactExists
+  this.contactIndex = contactIndex
+
+}
